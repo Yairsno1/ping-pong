@@ -1,0 +1,30 @@
+
+version: '3.1'
+
+    
+services:
+    ping-api:
+        image: yairsno1/ping-pong-api
+        container_name: ping_api
+                     
+        restart: always
+
+    ping-client:
+        image: yairsno1/ping-pong-client
+        container_name: ping_client
+                      
+        restart: always
+
+    ping-proxy:
+        image: yairsno1/ping-pong-proxy
+        container_name: ping_proxy
+
+        ports:
+            - 80:80
+        
+        links:
+            - ping-api
+            - ping-client
+            
+        restart: always        
+            
